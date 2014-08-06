@@ -5,8 +5,7 @@ require 'pathname'
 
 get "/captures" do
   RASTERIZE_JS = File.expand_path('js/rasterize.js').to_s
-  OUT_DIR = Pathname.new('captures').realpath
-  OUT_PATH = "/captures"
+  OUT_DIR = Pathname.new('public/captures').realpath
   HOSTNAME = "http://seac.ason.as"
 
   url = params[:url]
@@ -17,5 +16,5 @@ get "/captures" do
   end
   raise buf.inspect unless $?.success?
 
-  json ({image_url: "#{OUT_PATH}/#{file_name}"})
+  json ({image_url: "http://seac.ason.as/captures/#{file_name}"})
 end
